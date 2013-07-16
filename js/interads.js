@@ -5,7 +5,7 @@ jQuery( function($){
 		var is_cached = interAds.is_cached;
 		if(is_wait){
 			setTimeout(
-			  function() 
+			  function()
 			  {
 				$('#interads').fadeIn('fast');
 				interads_count();
@@ -14,17 +14,21 @@ jQuery( function($){
 		if(!is_wait && !is_cached){
 					interads_count();
 		}
-		
+
 		//CACHED AD
 		var is_cached = interAds.is_cached;
 		if(is_cached){
-		
 			$.ajax({
 				 type : "post",
 				 dataType : "html",
 				 cache: false,
 				 url : interAds.ajaxurl,
-				 data : {action: 'inter_ads_action', id_post : interAds.id_post },
+				 data : {
+					action: 'inter_ads_action',
+					id_post : interAds.id_post,
+					is_category : interAds.is_category,
+					is_single : interAds.is_single
+				 },
 				 success: function(response) {
 					if(response.type != "" && response != "none_interads") {
 					   $('body').append(response);
@@ -32,11 +36,11 @@ jQuery( function($){
 					   		interads_count();
 					   }
 					}
-					
+
 				 }
 			  });
 		}
-		
+
 	}
 });
 
@@ -50,7 +54,7 @@ function interads_count(){
                     displayZeroDays : false,
                     callback	: interads_close
                 });
-						
+
 }
 
 //Close Ad
