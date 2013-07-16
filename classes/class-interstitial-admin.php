@@ -441,7 +441,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 			   </div>
 
 		<!-- checkbox Custom Categories -->
-	  		 <div class="options_group">
+			<div class="options_group">
 				<p class="form-field">
 					<label for="_see_show_cats"><?php _e("Enable Based on Category", 'ujinter') ?></label>
 					<input id="_see_show_cats" class="radio" type="radio" value="show_cats" name="where_show" <?php checked( $include, 'show_cats' ) ?>>
@@ -450,7 +450,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 			   </div>
 
 		<!-- Select Categories -->
-	    	<div id="show_custom" class="options_group" <?php echo ($include!='show_cats') ? ' style="display:none"' : '' ?>>
+			<div id="show_cats" class="options_group" <?php echo ($include!='show_cats') ? ' style="display:none"' : '' ?>>
 				<p class="form-field">
 					<label for="ads_cats"><?php _e("Selected Categories", 'ujinter') ?></label>
 					<input type="text" name="ads_cats" class="short" id="ads_cats" value="<?php echo get_post_meta( $post->ID, 'ads_cats', true ); ?>" />
