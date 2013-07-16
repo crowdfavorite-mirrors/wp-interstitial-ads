@@ -445,7 +445,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 				<p class="form-field">
 					<label for="_see_show_cats"><?php _e("Enable Based on Category", 'ujinter') ?></label>
 					<input id="_see_show_cats" class="radio" type="radio" value="show_cats" name="where_show" <?php checked( $include, 'show_cats' ) ?>>
-					<span class="description"><?php _e("Show Ad on Posts With a Certain Category", 'ujinter') ?></span>
+					<span class="description"><?php _e("Show Ad on Single Posts With a Certain Category", 'ujinter') ?></span>
 				</p>
 			   </div>
 
