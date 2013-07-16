@@ -61,17 +61,20 @@ class Uji_Interst_Functions {
 				}
 
 				//CUSTOM CATEGORY
-				if( $valid && $where == 'show_cats' && !is_home() && !is_front_page() && is_singular() ){
-					$ads_cats = get_post_meta( get_the_ID(), 'ads_cats', true );
-					if(!empty($ads_cats)){
-						$ads_cats = explode(',', $ads_cats);
-						$cat_terms = get_the_category($id);
-						$valid = false;
-						foreach ($ads_cats as $cat_slug) {
-							foreach ($cat_terms as $term) {
-								if ($term->slug === trim(strtolower($cat_slug))) {
-									$valid = true;
-									break 2;
+				if( $valid && $where == 'show_cats' && !is_home() && !is_front_page() ) {
+					$valid = false;
+					if ( is_single() || (!empty($_POST['is_single']) && $_POST['is_single'] == 1) ) {
+						$ads_cats = get_post_meta( get_the_ID(), 'ads_cats', true );
+						if(!empty($ads_cats)){
+							$ads_cats = explode(',', $ads_cats);
+							$cat_terms = get_the_category($id);
+							$valid = false;
+							foreach ($ads_cats as $cat_slug) {
+								foreach ($cat_terms as $term) {
+									if ($term->slug === trim(strtolower($cat_slug))) {
+										$valid = true;
+										break 2;
+									}
 								}
 							}
 						}
@@ -79,7 +82,7 @@ class Uji_Interst_Functions {
 				}
 
 				//CUSTOM PAGE NOT HOME
-				if( $valid && $where == 'show_cust' && ( is_home() || is_front_page() ) ){
+				if( $valid && ($where == 'show_cust' || $where == 'show_cats') && ( is_home() || is_front_page() || is_archive() ) ){
 					$valid = false;
 				}
 
