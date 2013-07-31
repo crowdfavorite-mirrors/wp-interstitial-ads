@@ -58,7 +58,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 
 	/**
 	 * Setup the singular, plural and menu label names for the post types.
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @return void
 	 */
 	private function setup_post_type_labels_base () {
@@ -71,7 +71,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 	
 	/**
 	 * Setup the "Interstitial Ads" post type
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @return void
 	 */
 	public function add_post_type_ads () {
@@ -97,7 +97,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 	/**
 	 * Add column headings to the "slides" post list screen.
 	 * @access public
-	 * @since  1.0.0
+	 * @since  1.0
 	 */
 	public function add_column_headings ( $defaults ) {
 		$new_columns['cb'] = '<input type="checkbox" />';
@@ -116,7 +116,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 	/**
 	 * Add data for our newly-added custom columns.
 	 * @access public
-	 * @since  1.0.0
+	 * @since  1.0
 	 */
 	public function add_column_data ( $column_name, $id ) {
 		global $wpdb, $post;
@@ -151,7 +151,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 	
 	/**
 	 * Labels for post type
-	 * @since  1.0.0
+	 * @since  1.0
 	 * @return void
 	 */
 	private function create_post_type_labels ( $token, $singular, $plural, $menu ) {
@@ -178,7 +178,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 	/**
 	 * Load the global admin styles for the menu icon and the relevant page icon.
 	 * @access public
-	 * @since 1.0.0
+	 * @since 1.0
 	 * @return void
 	 */
 	public function admin_styles_interads () {
@@ -239,7 +239,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 		// $screen = get_current_screen();
 		// if  ( 'interads' == $screen->post_type ) {
 			$published_posts = wp_count_posts( 'interads' );
-			
+	
 			if( (int) $published_posts->publish > 0 ){
 				remove_submenu_page( 'edit.php?post_type=interads', 'post-new.php?post_type=interads' );
 				add_action('admin_footer', array( &$this, 'add_footer_css' ) );
@@ -249,15 +249,19 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 	
 	/**
 	 * Add footer CSS
-	 * @since  1.0
+	 * @since  1.2
 	 */
 	public function add_footer_css( ){
-		echo '<style type="text/css">
-					#favorite-actions {display:none;}
+		$css = '';
+		if ( isset($_GET['post_type']) && !empty($_GET['post_type']) && $_GET['post_type'] == 'interads' ){
+			$css = '#favorite-actions {display:none;}
 					.add-new-h2{display:none;}
-					.tablenav{display:none;}
+					.tablenav{display:none;}';
+		}
+		echo '<style type="text/css">
 					#wp-admin-bar-new-interads {display:none;}
-					</style>';
+					'. $css .'
+ 			  </style>';
 	}
 	
 	
@@ -489,7 +493,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 	
 	/**
 	 * settings_errors function.
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	public function settings_errors () {
 		echo settings_errors( $this->token . '-errors' );
@@ -497,7 +501,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 	
 	/**
 	 * settings_screen function.
-	 * @since 1.0.0
+	 * @since 1.0
 	 */
 	public function settings_screen () {
 	
