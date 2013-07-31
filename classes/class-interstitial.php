@@ -137,8 +137,14 @@ class Uji_Interst extends Uji_Interst_Functions{
 		if( $this->is_cached( ) ){
 	
 			//Timing
-			$JSinterAds = array( 'is_cached' => 'true', 'id_post' => $id_post, 'ajaxurl' => admin_url( 'admin-ajax.php' ) );
-			
+			$JSinterAds = array(
+				'is_cached' => 'true',
+				'id_post' => $id_post,
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'is_category' => is_category(),
+				'is_single' => is_single()
+			);
+
 			if ( !empty( $wait_time ) && ( int ) $wait_time > 0 ){
 				$JSinterAds = array_merge( $JSinterAds, array( 'is_wait' => $wait_time ) );	
 			}

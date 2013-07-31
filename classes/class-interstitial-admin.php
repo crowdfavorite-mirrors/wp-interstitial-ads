@@ -446,6 +446,26 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 			  
 			</div>
 	<?php 
+
+		<!-- checkbox Custom Categories -->
+			<div class="options_group">
+				<p class="form-field">
+					<label for="_see_show_cats"><?php _e("Enable Based on Category", 'ujinter') ?></label>
+					<input id="_see_show_cats" class="radio" type="radio" value="show_cats" name="where_show" <?php checked( $include, 'show_cats' ) ?>>
+					<span class="description"><?php _e("Show Ad on Single Posts With a Certain Category", 'ujinter') ?></span>
+				</p>
+			   </div>
+
+		<!-- Select Categories -->
+			<div id="show_cats" class="options_group" <?php echo ($include!='show_cats') ? ' style="display:none"' : '' ?>>
+				<p class="form-field">
+					<label for="ads_cats"><?php _e("Selected Categories", 'ujinter') ?></label>
+					<input type="text" name="ads_cats" class="short" id="ads_cats" value="<?php echo get_post_meta( $post->ID, 'ads_cats', true ); ?>" />
+					<span class="description"><?php _e("Category slugs separated by commas. ex: uncategorized, videos, etc.", 'ujinter') ?></span>
+				</p>
+			   </div>
+
+		</div>
 	}
 	
 	
@@ -485,6 +505,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 				if(isset($_POST['ads_link'.$x])) update_post_meta($post_id, 'ads_link'.$x, esc_html(stripslashes($_POST['ads_link'.$x])));  else update_post_meta($post_id, 'ads_link'.$x, '');
 			}
 			if( isset($_POST['ads_posts'] ) ) update_post_meta($post_id, 'ads_posts', esc_html(stripslashes($_POST['ads_posts']))); else update_post_meta($post_id, 'ads_posts', '');
+			if( isset($_POST['ads_cats'] ) ) update_post_meta($post_id, 'ads_cats', esc_html(stripslashes($_POST['ads_cats']))); else update_post_meta($post_id, 'ads_cats', '');
 			if( isset($_POST['datapick1'] ) ) update_post_meta($post_id, '_datapick1', esc_html(stripslashes($_POST['datapick1']))); else update_post_meta($post_id, '_datapick1', '');
 			if( isset($_POST['datapick2'] ) ) update_post_meta($post_id, '_datapick2', esc_html(stripslashes($_POST['datapick2']))); else update_post_meta($post_id, '_datapick2', '');
 		}

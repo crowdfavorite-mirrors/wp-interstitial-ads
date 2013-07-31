@@ -10,16 +10,24 @@ jQuery( function($){
 	//Show Custom 		
 	var this_div = jQuery('#show_custom');		
 	var ck = jQuery('#_see_show_cust');
-	var all_ck = jQuery('#_see_show_cust, #_see_show_all, #_see_show_home');
+	var ckCats = $('#_see_show_cats');
+	var ckCats_div = $('#show_cats');
+	var all_ck = jQuery('#_see_show_cust, #_see_show_all, #_see_show_home, #_see_show_cats');
 	all_ck.click(function(){
 		
 		if(ck.is(':checked')){
 			jQuery(this_div).fadeIn('fast');
-		}else{
-			jQuery(this_div).hide();
+			jQuery(ckCats_div).hide();
 		}
-	});	
-	
+		else if (ckCats.is(':checked')) {
+			jQuery(this_div).hide();
+			jQuery(ckCats_div).fadeIn('fast');
+		}
+		else{
+			jQuery(this_div).hide();
+			jQuery(ckCats_div).hide();
+		}
+	});
 
 		
 	//Color picker
