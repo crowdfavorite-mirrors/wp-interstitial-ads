@@ -3,7 +3,7 @@
 Plugin Name: Interstitial Ads
 Plugin URI: http://wpmanage.com/interstitial-ads
 Description: Allows you to show Interstitial Ads on any WordPress site
-Version: 1.2
+Version: 1.2-categories
 Author: Raul Ujog
 Author URI: http://wpmanage.com/
 */
@@ -17,9 +17,9 @@ Author URI: http://wpmanage.com/
 		 	require_once( 'classes/class-interstitial.php' );
 	 }
 
-	
+
 	 global $ujinter;
 	 $ujinter = new Uji_Interst( __FILE__ );
-	 $ujinter->version = '1.1';
-	 
+	 $ujinter->version = '1.2';
+
 ?>
