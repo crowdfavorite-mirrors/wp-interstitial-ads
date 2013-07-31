@@ -444,8 +444,6 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 				</p>
 			   </div>   
 			  
-			</div>
-	<?php 
 
 		<!-- checkbox Custom Categories -->
 			<div class="options_group">
@@ -466,6 +464,7 @@ class Uji_Interst_Admin extends Uji_Interst_Admin_API{
 			   </div>
 
 		</div>
+		<?php
 	}
 	
 	
