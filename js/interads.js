@@ -24,7 +24,12 @@ jQuery( function($){
 				 dataType : "html",
 				 cache: false,
 				 url : interAds.ajaxurl,
-				 data : {action: 'inter_ads_action', id_post : interAds.id_post },
+				 data : {
+					action: 'inter_ads_action',
+					id_post : interAds.id_post,
+					is_category : interAds.is_category,
+					is_single : interAds.is_single
+				 },
 				 success: function(response) {
 					if(response.type != "" && response != "none_interads") {
 					   $('body').append(response);
