@@ -5,7 +5,7 @@ jQuery( function($){
 		var is_cached = interAds.is_cached;
 		if(is_wait){
 			setTimeout(
-			  function() 
+			  function()
 			  {
 				$('#interads').fadeIn('fast');
 				interads_count();
@@ -14,11 +14,10 @@ jQuery( function($){
 		if(!is_wait && !is_cached){
 					interads_count();
 		}
-		
+
 		//CACHED AD
 		var is_cached = interAds.is_cached;
 		if(is_cached){
-		
 			$.ajax({
 				 type : "post",
 				 dataType : "html",
@@ -37,11 +36,11 @@ jQuery( function($){
 					   		interads_count();
 					   }
 					}
-					
+
 				 }
 			  });
 		}
-		
+
 	}
 });
 
@@ -55,7 +54,7 @@ function interads_count(){
                     displayZeroDays : false,
                     callback	: interads_close
                 });
-						
+
 }
 
 //Close Ad

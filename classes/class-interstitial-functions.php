@@ -14,13 +14,12 @@ class Uji_Interst_Functions {
 			 'order' 			 => 'DESC',
 			 'orderby'			 => 'date',
 			 'posts_per_page'	 => 1
-			 
+
 		);
 
 		$queryin = new WP_Query( $args );
 		$cicle = true;
 
-		
 		while ( $queryin->have_posts() && $cicle ):
 				$queryin->the_post();
 				$valid = true;
@@ -28,19 +27,19 @@ class Uji_Interst_Functions {
 				//Cookie check
 				$is_cookie = ( isset( $_COOKIE["inter_ads"] ) && !empty( $_COOKIE["inter_ads"] ) ) ? maybe_unserialize( stripslashes($_COOKIE["inter_ads"]) ) : '';
 				$want = get_post_meta( get_the_ID(), 'post_once', true );
-				
+
 				if( $valid && ( !empty( $is_cookie ) && in_array( get_the_ID(), $is_cookie ) && !empty( $want ) && $want == 'yes' ) ){
-					$valid = false; 
+					$valid = false;
 				}
-				
-			
+
+
 				//Selected
 				$is_as_html =  get_post_meta( get_the_ID(), 'include_html', true );
 				if( $valid && empty( $is_as_html ) ){
 					$valid = false;
-					
+
 				}
-					
+
 				//Where
 				$where = get_post_meta( get_the_ID(), 'where_show', true );
 
@@ -49,8 +48,8 @@ class Uji_Interst_Functions {
 						$valid = false;
 					}
 				}
-				
-				//CUSTOM PAGE			
+
+				//CUSTOM PAGE
 				if( $valid && $where == 'show_cust' && !is_home() && !is_front_page() ){
 					$ads_posts = get_post_meta( get_the_ID(), 'ads_posts', true );
 					if(!empty($ads_posts)){
@@ -59,7 +58,8 @@ class Uji_Interst_Functions {
 							$valid = false;
 						}
 					}
-				}		
+				}
+
 				//CUSTOM CATEGORY
 				if( $valid && $where == 'show_cats' && !is_home() && !is_front_page() ) {
 					$valid = false;
@@ -85,18 +85,18 @@ class Uji_Interst_Functions {
 				if( $valid && ($where == 'show_cust' || $where == 'show_cats') && ( is_home() || is_front_page() || is_archive() ) ){
 					$valid = false;
 				}
-				
+
 
 				//END RETURN
 				if( $valid ){
 					$cicle = false;
 					return get_the_ID();
-				} 
-			
+				}
+
 		endwhile;
 		wp_reset_query();
 	}
-	
+
 	/**
 	 * Add impression
 	 * @since  1.0
@@ -106,14 +106,14 @@ class Uji_Interst_Functions {
 		$num = (!empty($num)) ? (int) $num + 1 : 1;
 		update_post_meta($id, 'ads_impressions', $num );
 	}
-	
+
 	/**
 	 * Get Option
 	 * @since  1.0
 	 */
 	protected function int_option ( $name, $default = NULL ) {
 		$val = get_option( $this->token );
-		
+
 		if( !empty( $val[$name] ) )
 			return $val[$name];
 		elseif( $default && !empty( $val[$name] ) )
@@ -121,7 +121,7 @@ class Uji_Interst_Functions {
 		else
 			return '';
 	}
-	
+
 	/**
 	 * Check Cookie
 	 * @since  1.0
@@ -134,7 +134,7 @@ class Uji_Interst_Functions {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Add/Edit Ad Cookie
 	 * @since  1.0
@@ -145,28 +145,28 @@ class Uji_Interst_Functions {
 
 		if( !empty( $want ) && $want == 'yes' ){
 			$is_cookie = ( isset( $_COOKIE["inter_ads"] ) && !empty( $_COOKIE["inter_ads"] ) ) ? maybe_unserialize( stripslashes($_COOKIE["inter_ads"]) ) : '';
-		
+
 			if( !empty( $is_cookie ) && !empty( $is_cookie[0] ) && !in_array( $id, $is_cookie ) ){
-		
+
 				$add_cook = array_merge( $is_cookie, array( $id ) );
 			}
 			else if( !empty( $is_cookie ) && in_array( $id, $is_cookie ) ){
-				
+
 				$add_cook = '';
-				
+
 			}else{
-				
+
 				$add_cook = array( $id );
 			}
-			
+
 			if( !empty( $add_cook ) ){
 				setcookie( "inter_ads", "", time() - 3600, '/' );
 				setcookie( "inter_ads", maybe_serialize(  array_unique( $add_cook ) ), time() + 3600*24, '/' );
 			}
 		}
-			
+
 	}
-	
+
 	/**
 	 * Is Cache Plugin
 	 * @since  1.0
@@ -176,14 +176,14 @@ class Uji_Interst_Functions {
 		$chached = ($is == 'yes') ? true : false;
 		return $chached;
 	}
-	
+
 	/**
 	 * Ad content with Cache Plugin
 	 * @since  1.0
 	 */
 	public function inter_ajax_ads ( ) {
 		$id = $_POST['id_post'];
-		$ad_id = $this->is_interads( $id ); 
+		$ad_id = $this->is_interads( $id );
 		$mess =  $this->inter_ads( $id );
 		if( !empty( $mess ) && !$this->is_cookie ( $ad_id ) && $ad_id ){
 			$this->let_cookie ( $ad_id );
@@ -191,46 +191,46 @@ class Uji_Interst_Functions {
 		} else if( empty( $mess ) || $this->is_cookie ( $ad_id ) || !$ad_id ){
 			echo 'none_interads';
 		}
-		
+
 		die();
 	}
-	
+
 	/**
 	 * Get Ad Contents
 	 * @since  1.0
 	 */
 	protected function get_interad ( $id, $return = 'content' ) {
-		
+
 		if( $return == 'title' ){
 			$show_it =  get_post_meta( $id, 'show_title', true );
 			if( $show_it == 'yes' ){
-				$get_ad = get_post( $id );	
+				$get_ad = get_post( $id );
 				return $get_ad->post_title;
 			}
-	
+
 		}else{
-						
+
 			return $this->get_content ( $id );
-				
+
 		}
-		
+
 	}
-	
+
 	/**
 	 * Get Ad Content
 	 * @since  1.0
 	 */
 	private function get_content ( $id ) {
-		
+
 		$cnt_html =  get_post_meta( $id, 'include_html', true );
-		
+
 			//is HTML
 			if( $cnt_html ){
 				$get_ad = get_post( $id );
 				return do_shortcode( $get_ad->post_excerpt );
 			}
 	}
-	
-	
+
+
 } // End Class
 ?>

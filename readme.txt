@@ -3,7 +3,7 @@ Contributors: ujimoto
 Tags: interstitial ads, full page ads, full page banner, popup ads
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.2
+Stable tag: 1.1
 
 Interstitial Ads
 
@@ -47,10 +47,6 @@ WPmanage [(http://www.wpmanage.com/interstitial-ads/)](http://www.wpmanage.com/i
 3. Customization and Options
 
 == Changelog ==
-
-= 1.2 =
-
-* Fix combo box bugs.
 
 = 1.1 =
 
