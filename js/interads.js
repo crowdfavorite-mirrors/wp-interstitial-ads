@@ -1,5 +1,11 @@
 jQuery( function($){
 	if(typeof(interAds) !== 'undefined' && interAds != null){
+
+		// Don't run this on iOS.
+		if (navigator.userAgent.match(/[\W]i(pad|phone|pod)[\W]/i)) {
+		    return;
+		}
+
 		//WAIT TIME
 		var is_wait = interAds.is_wait;
 		var is_cached = interAds.is_cached;
