@@ -142,7 +142,10 @@ class Uji_Interst extends Uji_Interst_Functions{
 				'id_post' => $id_post,
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'is_category' => is_category(),
-				'is_single' => is_single()
+				'is_single' => is_single(),
+				'is_home' => is_home(),
+				'is_front_page' => is_front_page(),
+				'global_post_id' => get_the_ID(),
 			);
 
 			if ( !empty( $wait_time ) && ( int ) $wait_time > 0 ){
