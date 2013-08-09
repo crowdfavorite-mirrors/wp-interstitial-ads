@@ -155,13 +155,11 @@ class Uji_Interst_Functions {
 				$add_cook = '';
 				
 			}else{
-				
 				$add_cook = array( $id );
 			}
 			
 			if( !empty( $add_cook ) ){
-				setcookie( "inter_ads", "", time() - 3600, '/' );
-				setcookie( "inter_ads", maybe_serialize(  array_unique( $add_cook ) ), 60 * 60 * 1, '/' ); // 1hr expiration
+				setcookie( "inter_ads", maybe_serialize(  array_unique( $add_cook ) ), time() + (60 * 60 * 1), '/' ); // 1hr expiration
 			}
 		}
 			
