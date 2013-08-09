@@ -161,7 +161,7 @@ class Uji_Interst_Functions {
 			
 			if( !empty( $add_cook ) ){
 				setcookie( "inter_ads", "", time() - 3600, '/' );
-				setcookie( "inter_ads", maybe_serialize(  array_unique( $add_cook ) ), time() + 3600*24, '/' );
+				setcookie( "inter_ads", maybe_serialize(  array_unique( $add_cook ) ), 0, '/' );
 			}
 		}
 			
