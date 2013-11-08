@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Interstitial Ads
+Plugin Name: Interstitial Ads (CF MODIFIED)
 Plugin URI: http://wpmanage.com/interstitial-ads
-Description: Allows you to show Interstitial Ads on any WordPress site
+Description: Allows you to show Interstitial Ads on any WordPress site.  <strong>CF Modified to support categories and more.  Be careful when upgrading.</strong>
 Version: 1.3
 Author: Raul Ujog
 Author URI: http://wpmanage.com/
